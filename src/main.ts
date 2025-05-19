@@ -1,4 +1,5 @@
 import helmet from '@fastify/helmet'
+import multipart from '@fastify/multipart'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
@@ -19,6 +20,13 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, adapter)
 
   await app.register(helmet)
+  
+  // 注册multipart插件以支持文件上传
+  await app.register(multipart, {
+    limits: {
+      fileSize: 10 * 1024 * 1024, // 限制文件大小为10MB
+    },
+  })
 
   // 使用 Winston logger 作为全局日志
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER))

@@ -20,6 +20,7 @@ import { FormatResponseInterceptor, InvokeRecordInterceptor } from '@/intercepto
 import { ApiModule } from '@/modules/api/api.module'
 import { AuthModule } from '@/modules/auth/auth.module'
 import { CacheModule } from '@/modules/cache/cache.module'
+import { JavaBackendModule } from '@/modules/java-backend/java-backend.module'
 import { MenuModule } from '@/modules/menu/menu.module'
 import { NodemailerModule } from '@/modules/nodemailer/nodemailer.module'
 import { PrismaModule } from '@/modules/prisma/prisma.module'
@@ -155,6 +156,7 @@ const envFilePath = getEnvPath(__dirname)
     RoleModule,
     MenuModule,
     ApiModule,
+    JavaBackendModule,
   ],
   controllers: [AppController],
   providers: [
